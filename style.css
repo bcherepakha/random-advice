@@ -1,0 +1,90 @@
+body {
+    margin: 0;
+}
+
+.hero {
+    height: 100vh;
+    max-height: 500px;
+
+    --primary-color: rgba(238,99,82,1);
+    --secondary-color: rgba(128,0,128,1);
+    --bg-image: linear-gradient(
+      90deg,
+      var(--primary-color) 0%,
+      var(--secondary-color) 50%,
+      var(--primary-color) 100%);
+
+    --bg-advice-color: #000;
+    --text-color: var(--primary-color);
+
+    background: var(--bg-image);
+    background-size: 200%;
+
+    animation: bg-animation 8s ease-in-out 0s infinite;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    --start-text-wave: polygon(0% 16%, 12% 28%, 27% 38%, 39% 47%, 51% 53%, 61% 58%, 70% 63%, 78% 65%, 89% 70%, 98% 73%, 100% 98%, 0% 100%);
+    --end-text-wave: polygon(0% 100%, 12% 98%, 27% 73%, 39% 70%, 51% 63%, 61% 58%, 70% 53%, 78% 65%, 89% 47%, 98% 38%, 100% 28%, 0% 16%);
+
+}
+
+@keyframes bg-animation {
+    0%, 100% {
+        background-position: left;
+    }
+    50% {
+        background-position: right;
+    }
+}
+
+.hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.advice {
+    --content-padding: 1vw;
+    background: var(--bg-advice-color);
+    padding: var(--content-padding);
+    max-width: 80%;
+    position: relative;
+}
+
+.avice__content {
+    margin: 0;
+    padding: 0;
+    font-size: 3vw;
+    font-weight: bold;
+    text-align: center;
+}
+
+.advice__content--primary {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--text-color);
+}
+
+.advice__content--secondary {
+    color: var(--text-color);
+    position: absolute;
+    inset: var(--content-padding);
+    animation: text-wave 4s ease-in-out 0s infinite;
+}
+
+@media prefers-reduced-motion {
+    .advice__content--secondary {
+        animation: none;
+    }
+}
+
+@keyframes text-wave {
+    0%, 100% {
+        clip-path: var(--start-text-wave);
+    }
+    50% {
+        clip-path: var(--end-text-wave);
+    }
+}
